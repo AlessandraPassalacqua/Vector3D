@@ -1,6 +1,8 @@
 // Vector3D.h
 // header file of the Vector3D class
 
+#include <iostream>
+using namespace std;
 
 class Vector3D {
 
@@ -34,13 +36,34 @@ public:
   void setPhi(double phi) ;
 
   // getters
+  double getX() const;
+  double getY() const;
+  double getZ() const;
   double magnitude() const ;
   double theta() const ; // azimutale [0, M_PI]
   double phi() const ; // polare [0, 2M_PI)
 
   // functions
   double scalarProduct(const Vector3D& v) const ;
-  vector3D vectorProduct(const Vector3D& v) const ;
-
+  Vector3D vectorProduct(const Vector3D& v) const ;
+    
+  //angle between two vectors
+  double angle(Vector3D v);
+    
+  //overloads
+  Vector3D operator+(const Vector3D& v) const;
+  Vector3D operator-(const Vector3D& v) const;
+  Vector3D operator=(const Vector3D& v);
+  Vector3D operator*(const double& d) const;
+  Vector3D operator/(const double& d) const;
+  
 
 };
+
+//global functions
+//overload operator<< : it does the same as printCartesian.
+ostream& operator<<(ostream& os, const Vector3D& rhs);
+
+//overloas double*Vector3D
+Vector3D operator*(const double& d, const Vector3D& v);
+
